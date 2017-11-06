@@ -15,10 +15,26 @@ export default {
                 self.updateDepart();
             });
 
+            // $("#save").click(function () {asdasd
+            //     self.submit();
+            //     window.location.href = "/employees/Gridtwo";
+            //     //self.$route.params.id /employees/Gridtwo
+            // });
             $("#save").click(function () {
-                self.submit();
-                window.location.href = "/employees/Gridtwo";
-                //self.$route.params.id /employees/Gridtwo
+                if(self.type=="")
+                {
+                    $("#success-alert").fadeTo(2000, 500).slideUp(500, function(){
+                        $("#success-alert").slideUp(500);
+
+
+                    });
+
+                }
+                else{
+                    self.submit();
+                    window.location.href = "/employees/";
+                }
+
             });
 
             // $("#save").click(function () {
@@ -136,6 +152,7 @@ export default {
     },
     data() {
         return {
+            type:'',
             managers1:'',
             managerId1:'',
             departnents1:'',
@@ -211,7 +228,7 @@ export default {
             btnlinks: {
                 createbtnlink: "#/app/sales/salescustomeredit",
                 savebtnlink: "",
-                discardbtnlink: "/employees/Gridtwo",
+                discardbtnlink: "/employees/",
                 importbtnlink: "#/app/imported"
             },
 

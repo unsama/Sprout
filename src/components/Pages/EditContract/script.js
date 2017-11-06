@@ -105,7 +105,6 @@ export default{
 
 
             $("#save").click(function () {
-                alert("I reached in script where submit() function has been called!!!");
                 self.submit();
                 window.location.href = "/Employees/contractone/"+self.$route.params.id;
             });
@@ -337,14 +336,11 @@ export default{
         // select2: function (id) {
         //     var self = this
         //     self.status_name=id;
-        //     alert(self.status_name);
         //
         //
         // },
         selectJobtitleAndDepartmentName: function () {
             var self = this;
-            //alert(self.companyName);
-            //alert("Inside Method selectJobtitleAndDepartmentName(): employeeId  =  "+ self.employeeId);
             self.$http.post("/Employees/fetchJobTitleAndDept", {
                 "employeeId": self.employeeId,
 
@@ -353,10 +349,8 @@ export default{
                 console.log(jobAndDept);
                 self.job = jobAndDept.job_tittle;
                 self.abc = jobAndDept.name;
-                alert("depart name : "+jobAndDept.name);
 
             },function(err){
-                alert(err);
             });
             self.$http.post("/Employees/fetchContactStatus", {"statname": self.name}).then(function(res){self.status_name_drop =res.body.result;},function(err){
             });
@@ -386,7 +380,6 @@ export default{
                 self.visaNo = parentdata.visa_no;
                 self.$route.params.id = parentdata.id;
                 self.status_name = parentdata.contract_status;
-                alert("self.status_name  :  "+self.status_name);
                 $(function () {
                     if( self.status_name == "new"){
                         // $('#new').classList.add("oe_active");
@@ -497,7 +490,6 @@ export default{
                 self.visaNo = parentdata.visa_no;
                 self.$route.params.id = parentdata.id;
                 self.status_name = parentdata.contract_status;
-                alert("self.status_name  :  "+self.status_name);
                 $(function () {
                     if( self.status_name == "new"){
                         // $('#new').classList.add("oe_active");
@@ -611,7 +603,6 @@ export default{
                 self.workPermitNo = parentdata.work_permit_no;
                 self.visaNo = parentdata.visa_no;
                 self.status_name = parentdata.contract_status;
-                alert("self.status_name  :  "+self.status_name);
                 $(function () {
                     if( self.status_name == "new"){
                         // $('#new').classList.add("oe_active");
@@ -701,31 +692,30 @@ export default{
 
 
             self.$http.post("/employees/fetchEmployeeName", {"emplyee_name": self.id}).then(function(res){self.emp_table =res.body.result;},function(err){
-                //alert(err);
+
             });
 
             self.$http.post("/employees/fetchJobTitles", {"jobTitle": self.job_tittle	}).then(function(res){self.jobTitles =res.body.result;},function(err){
-                //alert(err);
+
             });
 
             self.$http.post("/employees/fetchParentDepartmentNames", {"deptName": self.employeename	}).then(function(res){self.dept_table =res.body.result;},function(err){
-                //alert(err);
+
             });
 
             self.$http.post("/employees/fetchContractType", {"contractType": self.contract_type}).then(function(res){self.EmployeeContractTypeNames =res.body.result;},function(err){
-                //alert(err);
+
             });
 
             self.$http.post("/employees/fetchWorkScheduleName", {"work_schedule_name:'',": self.name}).then(function(res){self.workingSchedule_table_ =res.body.result;},function(err){
-                //alert(err);
+
             });
             self.$http.post("/employees/fetchParentDepartmentNamesid", {"id": self.departmentId}).then(function (res) {
-                //console.log(res.body);
                 var parentdata = res.body.result[0];
                 self.dept_name = parentdata.name;
 
             }, function (err) {
-                //alert(err);
+
             });
 
 
@@ -760,25 +750,7 @@ export default{
 
 
         submit: function () {
-            alert("m here jst inside the submit() body.");
-
-
             var self = this;
-            alert("employeeId =  "+self.employeeId);
-            alert("contractType_id =   "+self.contractType_id);
-            alert("trial_period_duration_from =    "+self.trialFrom);
-            alert("trial_period_duration_to =    "+self.trialTo);
-            alert("duration_from =    "+self.durationFrom);
-            alert("duration_from =    "+self.durationTo);
-            alert("visa_expire_date =    "+self.visaEpireDate);
-            alert("work_schedule_id =    "+self.work_schedule_id);
-            alert("jobTitle =    "+self.jobTitle);
-            alert("department id =    "+self.departmentId);
-            alert("notes  =    "+self.notes);
-            alert("visaNo  =    "+self.visaNo);
-            alert("workPermitNo  =    "+self.workPermitNo);
-            alert("status_name  =    "+self.status_name);
-
             self.$http.post("/Employees/EditContract", {
                 "id": self.$route.params.id,
                 "referenceName": self.referenceName,
@@ -798,15 +770,11 @@ export default{
                 "visaNo":self.visaNo,
                 "workPermitNo":self.workPermitNo,
                 "status_name": self.status_name,
-
-
             }).then(function(res){
                 console.log(res.body);
             },function(err){
-                //alert(err);
+
             });
-            // alert("trial_period_duration_from =    "+self.trial_period_duration_from);
-            alert("This is the last statement in submit() function body!!!");
 
         },
     },

@@ -8,11 +8,10 @@ export default{
         var self = this;
         document.title = this.title;
         this.select();
-        $("#delete").click(function () {
+        this.select1();
+        $(".delete").click(function () {
             $(".checkBoxClass:checked").each(function(){
                 del.push($(this).val());
-                // self.btnlinks.deletebtnlink = "/setting/users/"+del;
-                // self.delete();
             });
             console.log(del);
             self.delete(del);
@@ -46,7 +45,6 @@ export default{
                 "",
                 "",
                 "",
-
             ],
             tabledata: {
                 "row": {
@@ -61,10 +59,81 @@ export default{
 
                     ],
                 },
-            }
+            },
+            counter: 1,
+            num:'',
         }
     },
     methods: {
+        select1: function () {
+            var self = this;
+            self.$http.post("/setting/numin", {"id": self.$route.params.id}).then(function (res) {
+                var parentdata = res.body.data[0];
+                self.num = parentdata.count;
+                console.log(res.body)
+                console.log(self.num)
+
+            }, function (err) {
+            });
+        },
+        select3: function () {
+            var self = this;
+            self.counter+=1;
+            self.$http.post("/setting/incomingtablenext", {
+                "counter": self.counter,
+            }).then(function(res){
+                var data = res.body.result;
+                self.tabledata = [];
+                if(data.length > 0){
+                    data.forEach(function(val) {
+                        self.tabledata.push({
+                            "data": [
+                                val.name,
+                                val.server_type,
+                                val.ssl_tsl,
+                                val.server_type	,
+                                val.last_fetched_date,
+                                val.port,
+                                val.status,
+                            ],
+                            "url": "/setting/incomingmailserverin/"+val.id,
+                        });
+                    });
+                    console.log(self.tabledata);
+                }
+            },function(err){
+                alert(err);
+            });
+        },
+        select4: function () {
+            var self = this;
+            self.counter-=1;
+            self.$http.post("/setting/incomingtableback", {
+                "counter": self.counter,
+            }).then(function(res){
+                var data = res.body.result;
+                self.tabledata = [];
+                if(data.length > 0){
+                    data.forEach(function(val) {
+                        self.tabledata.push({
+                            "data": [
+                                val.name,
+                                val.server_type,
+                                val.ssl_tsl,
+                                val.server_type	,
+                                val.last_fetched_date,
+                                val.port,
+                                val.status,
+                            ],
+                            "url": "/setting/incomingmailserverin/"+val.id,
+                        });
+                    });
+                    console.log(self.tabledata);
+                }
+            },function(err){
+                alert(err);
+            });
+        },
         select: function () {
             var self = this;
             self.$http.post("/setting/incomingtable", {
@@ -89,19 +158,14 @@ export default{
                     });
                     console.log(self.tabledata);
                 }
-                //self.options =res.body.data;
-
             },function(err){
                 alert(err);
             });
         },
         delete: function (del) {
             var self = this;
-            //alert(self.current_company+ " ");
             console.log("a"+del);
             self.$http.post("/setting/delete_incoming", {"delete_items": del}).then(function(res){
-
-                //console.log(res.body);
             },function(err){
                 //alert(err);
             });

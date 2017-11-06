@@ -1,5 +1,7 @@
 .companiesinedit
     DashboardController(v-bind:savedbtn='true',v-bind:discardbtn='true',v-bind:links='btnlinks',v-bind:num1='true',v-bind:heading='head')
+        .col-sm-6(style='padding:0px;' ,slot='job')
+            h4.samodashheading(style="font-size: 18px;") Company
     Modal(v-bind:cancel='true',v-bind:save='true',v-bind:heading="modal",v-bind:modal='"bd-example-modal-lg"')
         .modal-body.o_act_window(style='margin-left: -29px;margin-right: -29px;margin-top: -31px;')
             .o_form_view.o_form_editable

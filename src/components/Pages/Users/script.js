@@ -8,6 +8,7 @@ export default{
         var del = []; // initialize empty array
         document.title = this.title;
         this.select();
+        this.select1();
         $(function () {
             $("#action").hide();
             $("#changepassword").click(function () {
@@ -20,7 +21,7 @@ export default{
                 }else{
                     $("#action").hide();
                 }
-
+               // alert("check it");
             });
 
             $("#num01").click(function () {
@@ -34,7 +35,8 @@ export default{
             $(".delete").click(function () {
                 $(".checkBoxClass:checked").each(function(){
                     del.push($(this).val());
-
+                    // self.btnlinks.deletebtnlink = "/setting/users/"+del;
+                    // self.delete();
                 });
                 console.log(del);
                  self.delete(del);
@@ -48,6 +50,8 @@ export default{
             title: 'Users - Sprout',
             options: '',
             username: '',
+            counter: 1,
+            num:'',
             v: true,
             v1: false,
             btnlinks: {
@@ -57,6 +61,10 @@ export default{
                 exportbtnlink: "",
                 changepasswordbtnlink: "",
                 changepasswordbtnlink_modal: "",
+                deletedropbtnlink:"",
+                duplicatebtnlink:"",
+                planorderbtnlink:"",
+
             },
             tableheader: [
                 "ID",
@@ -64,6 +72,7 @@ export default{
                 "Login",
                 "Language",
                 "Latest Connection",
+
             ],
             tablefoot: [
                 "",
@@ -79,14 +88,87 @@ export default{
 
                     ],
                     "url": "/recruitment/ReqDep"
+
+
                 },
 
             },
         };
     },
     methods: {
+        select1: function () {
+            var self = this;
+            self.$http.post("/setting/numuser", {"id": self.$route.params.id}).then(function (res) {
+                var parentdata = res.body.data[0];
+                self.num = parentdata.count;
+                console.log(res.body)
+                console.log(self.num)
+                //console.log(this.$route.query.id);
+            }, function (err) {
+            });
+        },
+        select3: function () {
+            var self = this;
+            self.counter+=1;
+            self.$http.post("/setting/usertablenext", {
+                "counter": self.counter,
+            }).then(function(res){
+                var data = res.body.data;
+                self.tabledata = [];
+                if(data.length > 0){
+                    data.forEach(function(val) {
+                        var j_date = new Date(val.created_at);
+                        self.tabledata.push({
+                            "data": [
+                                val.id,
+                                val.username,
+                                val.email,
+                                val.language,
+                                j_date.getDate()+"-"+j_date.getMonth()+"-"+j_date.getFullYear()
+                            ],
+                            "url": "/setting/usersin/"+val.id,
+                        });
+                    });
+                    console.log(self.tabledata);
+                }
+            },function(err){
+            });
+        },
+        select4: function () {
+            var self = this;
+            self.counter-=1;
+            self.$http.post("/setting/usertableback", {
+                "counter": self.counter,
+            }).then(function(res){
+                var data = res.body.data;
+                self.tabledata = [];
+                if(data.length > 0){
+                    data.forEach(function(val) {
+                        var j_date = new Date(val.created_at);
+                        self.tabledata.push({
+                            "data": [
+                                val.id,
+                                val.username,
+                                val.email,
+                                val.language,
+                                j_date.getDate()+"-"+j_date.getMonth()+"-"+j_date.getFullYear()
+                            ],
+                            "url": "/setting/usersin/"+val.id,
+
+                        });
+                    });
+                    console.log(self.tabledata);
+                }
+                //self.options =res.body.data;
+
+            },function(err){
+                //alert(err);
+            });
+
+        },
         select: function () {
             var self = this;
+
             self.$http.post("/setting/usertable", {
                 "username": self.options,
             }).then(function(res){
@@ -109,7 +191,7 @@ export default{
                     });
                     console.log(self.tabledata);
                 }
-
+                //self.options =res.body.data;
 
             },function(err){
                 //alert(err);

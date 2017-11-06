@@ -78,7 +78,8 @@ export default{
             }, function (err) {
                 alert(err);
             });
-            self.$http.post("/employees/fetchVacanciesDetail", {"id": self.$route.params.id}).then(function (res) {
+            //fetchVacanciesDetail
+            self.$http.post("/employees/fetchDeptTotalAndAbsentEmployees", {"id": self.$route.params.id}).then(function (res) {
                 self.names2 = res.body.result;
                 console.log(self.names2);
             }, function (err) {

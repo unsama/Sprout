@@ -1,12 +1,11 @@
 import DashboardController from "./../../partials/DashboardController/DashboardController.vue"
 import incomingmailservereditcompo from "./../../partials/incomingmailservereditcompo/incomingmailservereditcompo.vue"
 
-
-
 export default{
     created: function () {
         var self = this;
         this.select();
+        this.select1();
         $(function () {
             $("#changepassword").click(function () {
                 self.pwd_update();
@@ -15,6 +14,13 @@ export default{
             $("#send_resert_pwd_instruction").click(function () {
                 self.send_resert_pwd_instructions();
                 //window.location.href = "/setting/users";
+            });
+            $("#num01").click(function () {
+                self.ssubmit();
+                self.select3();
+            });
+            $("#num10").click(function () {
+                self.psubmit();
             });
             $("#topm21").click(function () {
                 $(".pwd").hide();
@@ -40,7 +46,7 @@ export default{
     },
     data () {
         return {
-            title:"New - Sprout",
+            title:"New - Sprouts",
             head: "General Settings / Incoming Mail Servers / New",
             btnlinks: {
                 editbtnlink:"/setting/incomingmailserveredit",
@@ -52,11 +58,11 @@ export default{
             servername:"",
             port:"",
             username:"",
+            num:"",
+            counter:0,
             password:"",
             newrecord:"",
             ssl:"",
-
-
         }
     },
     computed: {
@@ -65,6 +71,79 @@ export default{
         }
     },
     methods: {
+        ssubmit: function () {
+            var self = this;
+            self.$http.post("/setting/incominginfonext", {"id": self.$route.params.id}).then(function (res) {
+
+                var parentdata = res.body.data[0];
+                self.name = parentdata.name;
+                self.$route.params.id = parentdata.id;
+                self.$route.params.id = parentdata.id;
+                self.servertype = parentdata.server_type;
+                self.fetchdate = parentdata.last_fetched_date;
+                self.servername = parentdata.server_name;
+                self.port = parentdata.port;
+                self.ssl = parentdata.ssl_tsl;
+                self.Username = parentdata.username;
+                self.Password = parentdata.password;
+                self.newrecord = parentdata.action_id;
+                //console.log(self.status);
+                //console.log(this.$route.query.id);
+                self.$http.post("/alias_value", {"alias_id": self.alias_id}).then(function (res) {
+                    //console.log(res.body);
+                    var parentdata = res.body.result[0];
+                    self.name = parentdata.name;
+
+                }, function (err) {
+                    //alert(err);
+                });
+            }, function (err) {
+                // alert(err);
+            });
+        },
+        psubmit: function () {
+            var self = this;
+            self.$http.post("/setting/incominginfoback", {"id": self.$route.params.id}).then(function (res) {
+                var parentdata = res.body.data[0];
+                self.name = parentdata.name;
+                self.$route.params.id = parentdata.id;
+                self.servertype = parentdata.server_type;
+                self.fetchdate = parentdata.last_fetched_date;
+                self.servername = parentdata.server_name;
+                self.port = parentdata.port;
+                self.ssl = parentdata.ssl_tsl;
+                self.Username = parentdata.username;
+                self.Password = parentdata.password;
+                self.newrecord = parentdata.action_id;
+                //console.log(self.status);
+                //console.log(this.$route.query.id);
+                self.$http.post("/alias_value", {"alias_id": self.alias_id}).then(function (res) {
+                    //console.log(res.body);
+                    var parentdata = res.body.result[0];
+                    self.name = parentdata.name;
+
+                }, function (err) {
+                    //alert(err);
+                });
+
+            }, function (err) {
+                // alert(err);
+            });
+
+
+
+        },
+        select1: function () {
+            var self = this;
+            self.$http.post("/setting/numsetting2", {"id": self.$route.params.id}).then(function (res) {
+                var parentdata = res.body.data[0];
+                self.num = parentdata.count;
+                console.log(res.body)
+                console.log(self.num)
+                //console.log(this.$route.query.id);
+            }, function (err) {
+            });
+        },
         select: function () {
             var self = this;
             //alert(self.companyName);

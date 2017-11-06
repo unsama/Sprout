@@ -249,7 +249,7 @@ router.post('/EditEmployee', function (req, res, next) {
     }
     if(!req.body.dates_value7 ) {
         req.body.dates_value7 ="" ;
-    }
+            }
 
     console.log("employeeName=  "+req.body.employeeName);
     console.log("workingAddressId=  "+req.body.workingAddressId);
@@ -285,10 +285,10 @@ router.post('/EditEmployee', function (req, res, next) {
 
 
     //console.log('INSERT INTO `employee`(`employeename`,`work_address_id`,`work_email`,`work_phone`,`work_mobile`,`work_location`,`department_id`,`job_tittle`,`coach_id`,`country_id`,`working_time_id`,`identification_number`,`passport_number`,`employee_bank_account_id`,`gender`,`maritial_status`,`number_of_childern`,`home_address_id`,`date_of_birth`,`place_of_birth`,`time_sheet_cost`,`account_id`,`medical_exam`,`company_vehicle`,`home_work_distance`,`related_user_id`,`badge_id`,`pin`,`manual_attandance`) ' +
-    //'VALUES ("'+req.body.employeeName+'",'+req.body.workingAddressId+',"'+req.body.workEmail+'","'+req.body.workPhone+'","'+req.body.workMobile+'","'+req.body.workLocation+'",'+req.body.departmentId+','+req.body.jobtitleId+','+req.body.coachId+','+req.body.countryId+','+req.body.workingTimeId+',"'+req.body.identificationNo+'","'+req.body.passportNo+'",'+req.body.BankAccountNumbersId+',"'+req.body.gender+'","'+req.body.maritalStatus+'",'+req.body.noOfChildren+','+req.body.homeAddressId+',"'+req.body.dates_value6+'","'+req.body.placeOfBirth+'",'+req.body.timeSheetCost+','+req.body.accountId+',"'+req.body.dates_value7+'","'+req.body.companyVehicle+'",'+req.body.HomeDistance+','+req.body.relatedUserId+','+req.body.badgeId+','+req.body.pin+','+req.body.manualAttendance+')');
+        //'VALUES ("'+req.body.employeeName+'",'+req.body.workingAddressId+',"'+req.body.workEmail+'","'+req.body.workPhone+'","'+req.body.workMobile+'","'+req.body.workLocation+'",'+req.body.departmentId+','+req.body.jobtitleId+','+req.body.coachId+','+req.body.countryId+','+req.body.workingTimeId+',"'+req.body.identificationNo+'","'+req.body.passportNo+'",'+req.body.BankAccountNumbersId+',"'+req.body.gender+'","'+req.body.maritalStatus+'",'+req.body.noOfChildren+','+req.body.homeAddressId+',"'+req.body.dates_value6+'","'+req.body.placeOfBirth+'",'+req.body.timeSheetCost+','+req.body.accountId+',"'+req.body.dates_value7+'","'+req.body.companyVehicle+'",'+req.body.HomeDistance+','+req.body.relatedUserId+','+req.body.badgeId+','+req.body.pin+','+req.body.manualAttendance+')');
 
 
-    //employee_manager_id
+      //employee_manager_id
     connection.query('Update `employee` SET `employeename` = "'+req.body.employeeName+'",`work_address_id` ='+req.body.workingAddressId+' ,`work_email`="'+req.body.workEmail+'",`work_phone`= "'+req.body.workPhone+'",`work_mobile`="'+req.body.workMobile+'",`work_location`="'+req.body.workLocation+'",`department_id`='+req.body.departmentId+',`job_tittle`='+req.body.jobtitleId+',`employee_manager_id`='+req.body.managerId+',`coach_id`='+req.body.coachId+',`country_id`='+req.body.countryId+',`working_time_id`='+req.body.workingTimeId+',`identification_number`="'+req.body.identificationNo+'",`passport_number`="'+req.body.passportNo+'",`employee_bank_account_id`='+req.body.BankAccountNumbersId+',`gender`="'+req.body.gender+'",`maritial_status`="'+req.body.maritalStatus+'",`number_of_childern`='+req.body.noOfChildren+',`home_address_id`='+req.body.homeAddressId+',`date_of_birth`="'+req.body.dates_value6+'",`place_of_birth`="'+req.body.placeOfBirth+'",`time_sheet_cost`='+req.body.timeSheetCost+',`account_id`='+req.body.accountId+',`medical_exam`="'+req.body.dates_value7+'",`company_vehicle`="'+req.body.companyVehicle+'",`home_work_distance`='+req.body.HomeDistance+',`related_user_id`='+req.body.relatedUserId+',`badge_id`='+req.body.badgeId+',`pin`='+req.body.pin+',`manual_attandance`='+req.body.manualAttendance+' WHERE `employee`.`id` = "'+req.body.id+'" ', function (error, results, fields) {
         if (error) {
             console.log("i reached in just after querry!!! ",error.message);
@@ -902,6 +902,18 @@ router.post('/fetchEmployeeName', function (req, res, next) {
     });
 
 });
+router.post('/fetchDepartmentEmployees', function (req, res, next) {
+
+    connection.query('SELECT employee.id, employee.employeename,employee.work_phone,employee.work_email,employee.statuss,job_positions.job_tittle,contact.address AS workAddress FROM employee LEFT JOIN job_positions ON employee.job_tittle = job_positions.id LEFT JOIN contact ON employee.work_address_id = contact.id WHERE `employee`.`department_id` = "'+req.body.id+'"', function (error, results, fields) {
+        if (!error) {
+            res.json({"status": "ok", "result": results});
+            console.log(results);
+        } else {
+            res.json({"status": "failed", "message": error.message});
+        }
+    });
+
+});
 
 router.post('/fetchdeparments', function (req, res, next) {
 
@@ -1076,6 +1088,16 @@ router.post('/putEmployeesToTableView', function (req, res, next) {
         }
     });
 });
+router.post('/putDeptEmployeesToTableView', function (req, res, next) {
+    console.log('SELECT e1.id AS ID, e1.employeename as empname, e1.work_phone as phone, e1.work_email as email, department.name as deptname, job_positions.job_tittle as job, e2.employeename as empManager FROM employee e1 LEFT JOIN employee e2 ON e1.id = e2.employee_manager_id LEFT JOIN job_positions ON e1.job_tittle = job_positions.id LEFT JOIN department ON e1.department_id = department.id Where e1.department_id = "'+req.body.id+'" LIMIT 3');
+    connection.query('SELECT e1.id AS ID, e1.employeename as empname, e1.work_phone as phone, e1.work_email as email, department.name as deptname, job_positions.job_tittle as job, e2.employeename as empManager FROM employee e1 LEFT JOIN employee e2 ON e1.id = e2.employee_manager_id LEFT JOIN job_positions ON e1.job_tittle = job_positions.id LEFT JOIN department ON e1.department_id = department.id Where e1.department_id = "'+req.body.id+'" LIMIT 3', function (error, results, fields) {
+        if (!error) {
+            res.json({"status": "ok", "result": results});
+        } else {
+            res.json({"status": "failed", "message": error.message});
+        }
+    });
+});
 router.post('/employee_tablenext', function (req, res, next) {
     connection.query('SELECT e1.id AS ID, e1.employeename as empname, e1.work_phone as phone, e1.work_email as email, department.name as deptname, job_positions.job_tittle as job, e2.employeename as empManager FROM employee e1 LEFT JOIN employee e2 ON e1.id = e2.employee_manager_id LEFT JOIN job_positions ON e1.job_tittle = job_positions.id LEFT JOIN department ON e1.department_id = department.id limit 3 OFFSET '+""+ req.body.counter +"" +'', function (error, results, fields) {
         if (!error) {
@@ -1085,8 +1107,27 @@ router.post('/employee_tablenext', function (req, res, next) {
         }
     });
 });
+router.post('/DeptEmployeeNext', function (req, res, next) {
+    connection.query('SELECT e1.id AS ID, e1.employeename as empname, e1.work_phone as phone, e1.work_email as email, department.name as deptname, job_positions.job_tittle as job, e2.employeename as empManager FROM employee e1 LEFT JOIN employee e2 ON e1.id = e2.employee_manager_id LEFT JOIN job_positions ON e1.job_tittle = job_positions.id LEFT JOIN department ON e1.department_id = department.id Where e1.department_id = "'+req.body.id+'" limit 3 OFFSET '+""+ req.body.counter +"" +'', function (error, results, fields) {
+        if (!error) {
+            res.json({"status": "ok", "data": results});
+        } else {
+            res.json({"status": "failed", "message": error.message});
+        }
+    });
+});
 router.post('/employee_tableback', function (req, res, next) {
     connection.query('SELECT e1.id AS ID, e1.employeename as empname, e1.work_phone as phone, e1.work_email as email, department.name as deptname, job_positions.job_tittle as job, e2.employeename as empManager FROM employee e1 LEFT JOIN employee e2 ON e1.id = e2.employee_manager_id LEFT JOIN job_positions ON e1.job_tittle = job_positions.id LEFT JOIN department ON e1.department_id = department.id limit 3 OFFSET '+""+ req.body.counter +"" +'', function (error, results, fields) {
+        if (!error) {
+            res.json({"status": "ok", "data": results});
+        } else {
+            res.json({"status": "failed", "message": error.message});
+        }
+    });
+});
+router.post('/DeptEmployeeBack', function (req, res, next) {
+    console.log('SELECT e1.id AS ID, e1.employeename as empname, e1.work_phone as phone, e1.work_email as email, department.name as deptname, job_positions.job_tittle as job, e2.employeename as empManager FROM employee e1 LEFT JOIN employee e2 ON e1.id = e2.employee_manager_id LEFT JOIN job_positions ON e1.job_tittle = job_positions.id LEFT JOIN department ON e1.department_id = department.id Where e1.department_id = "'+req.body.id+'" limit 3 OFFSET '+""+ req.body.counter +"" +'');
+    connection.query('SELECT e1.id AS ID, e1.employeename as empname, e1.work_phone as phone, e1.work_email as email, department.name as deptname, job_positions.job_tittle as job, e2.employeename as empManager FROM employee e1 LEFT JOIN employee e2 ON e1.id = e2.employee_manager_id LEFT JOIN job_positions ON e1.job_tittle = job_positions.id LEFT JOIN department ON e1.department_id = department.id Where e1.department_id = "'+req.body.id+'" limit 3 OFFSET '+""+ req.body.counter +"" +'', function (error, results, fields) {
         if (!error) {
             res.json({"status": "ok", "data": results});
         } else {
@@ -1171,8 +1212,8 @@ router.post('/fetchJobTitleAndDept', function (req, res, next) {
 
     connection.query('SELECT job_positions.job_tittle, department.name FROM employee,job_positions,department where employee.id='+"'"+ req.body.employeeId +"'" +' AND employee.job_tittle = job_positions.id AND employee.department_id = department.id',function (error, results, fields) {
         if (error) res.json({"status": "failed", "message": error.message});
-        else{
-            console.log(results);
+         else{
+             console.log(results);
             res.json({"status": "ok", "data": results});
         }
         console.log(results);
@@ -1186,8 +1227,8 @@ router.post('/fetchEmployeeDepartment', function (req, res, next) {
 
     connection.query('SELECT department.name FROM employee ,department where employee.id='+"'"+ req.body.employeeId +"'" +' AND employee.department_id = department.id',function (error, results, fields) {
         if (error) res.json({"status": "failed", "message": error.message});
-        else{
-            console.log(results);
+         else{
+             console.log(results);
             res.json({"status": "ok", "data": results});
         }
         console.log(results);
@@ -1592,6 +1633,16 @@ router.post('/countContract', function (req, res, next) {
 })
 router.post('/countEmployees', function (req, res, next) {
     connection.query("select COUNT(*) as count from employee", function (error, results, fields) {
+        if (error){ res.json({"status": "failed", "message": error.message});}
+        else{
+            res.json({"status": "ok", "data": results});
+            console.log(results);
+        }
+    });
+
+});
+router.post('/countDeptEmployees', function (req, res, next) {
+        connection.query('select COUNT(*) as count from employee Where employee.department_id="'+ req.body.id +'"', function (error, results, fields) {
         if (error){ res.json({"status": "failed", "message": error.message});}
         else{
             res.json({"status": "ok", "data": results});

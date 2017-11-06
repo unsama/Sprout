@@ -39,7 +39,6 @@ export default{
 
             });
             $("#delete").click(function () {
-                alert("calling delete contract operation!!!");
                 self.deleteContract();
                 window.location.href = "/employees/CreateDep/";
             });
@@ -278,7 +277,6 @@ export default{
                 self.work_permit_no = parentdata.work_permit_no;
                 self.visa_expire_date = parentdata.visa_expire_date;
                 self.status_name = parentdata.contract_status;
-                alert("self.status_name  :  "+self.status_name);
                 $(function () {
                     if( self.status_name == "new"){
                         // $('#new').classList.add("oe_active");
@@ -418,7 +416,6 @@ export default{
                 self.work_permit_no = parentdata.work_permit_no;
                 self.visa_expire_date = parentdata.visa_expire_date;
                 self.status_name = parentdata.contract_status;
-                alert("self.status_name  :  "+self.status_name);
                 $(function () {
                     if( self.status_name == "new"){
                         // $('#new').classList.add("oe_active");
@@ -538,13 +535,13 @@ export default{
                 alert("Are you sure you want to delete the contract???");
                 console.log("this is the id of contract to be deleted =  "+self.$route.params.id);
             },function(err){
-                //alert(err);
+
             });
         },
         select2: function (id) {
             var self = this
             self.status_name = id;
-            alert(self.status_name);
+
         },
         select: function () {
             var self = this;
@@ -569,7 +566,6 @@ export default{
                 self.work_permit_no = parentdata.work_permit_no;
                 self.visa_expire_date = parentdata.visa_expire_date;
                 self.status_name = parentdata.contract_status;
-                alert("self.status_name  :  "+self.status_name);
                 $(function () {
                     if( self.status_name == "new"){
                         // $('#new').classList.add("oe_active");

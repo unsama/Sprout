@@ -1,7 +1,15 @@
 .outgoingemailserverin
-    DashboardController(v-bind:createbtn='true', v-bind:editbtn='true',v-bind:attachmentbtn='true',v-bind:duplicate='true',v-bind:num1='true',v-bind:deletebtn='true',v-bind:assignedtasks='true',v-bind:changepassword='true',v-bind:actionbtn='true',v-bind:heading="head",v-bind:links="btnlinks")
-        .col-sm-6(style='padding:0px;' ,slot='heading')
+    DashboardController(v-bind:createbtn='true',v-bind:duplicatedropbtn='true',v-bind:deletedropbtn='true',v-bind:planorderbtn='true', v-bind:editbtn='true',v-bind:attachmentbtn='true',v-bind:duplicate='true',v-bind:num1='true',v-bind:deletebtn='true',v-bind:assignedtasks='true',v-bind:changepassword='true',v-bind:actionbtn='true',v-bind:heading="head",v-bind:links="btnlinks")
+        .col-sm-6(style='padding:0px;' ,slot='job')
             h4.samodashheading(style="font-size: 18px;") General Settings / Outgoing Mail Servers / {{Description}}
+
+        span.o_pager_value(slot='page') {{counter}}
+            |  /
+            span.o_pager_limit(style="padding-right: 6px;") {{num}}
+
+            span.btn-group.btn-group-sm
+                button.fa.fa-chevron-left.btn.btn-icon.o_pager_previous#num10(@click="counter--",style='background-color:white;border-color: #adadad;color: #4c4c4c;')(type='button', accesskey='p')
+                button.fa.fa-chevron-right.btn.btn-icon.o_pager_next#num01(@click="counter++",style='background-color:white;border-color: #adadad;color: #4c4c4c;')(type='button', accesskey='n')
     outgoingemailservereditcompo
         .o_view_manager_content(slot='outgoing')
             .o_form_view.o_form_readonly

@@ -1,7 +1,19 @@
 .Dep
     DashboardController(v-bind:heading="nextactivity",v-bind:savedbtn='true',v-bind:discardbtn='true', v-bind:links="btnlinks")
-        .col-sm-6(style='padding:0px;' ,slot='heading')
+        .col-sm-6(style='padding:0px;' ,slot='job')
             h4.samodashheading(style="font-size: 18px;") Departments / New
+    .row
+        .col-sm-12
+            #success-alert(style='background-color:red;display:none;position:absolute;right: 16px;z-index: 3;')
+                button.close(type="button", data-dismiss="alert",style='color:white;') x
+                .o_notification.o_error
+                    .o_notification_title
+                        span.o_icon.fa.fa-3x.fa-exclamation(style='color:white;border-bottom: 3px solid white;font-size: 16px') The following fields are invalid:
+
+                    .o_notification_content(style='padding-top: 16px;')
+                        ul
+                            li#leave(style='color:white;') Department Name
+
 
     Modal(v-bind:saveclose='true',v-bind:discard='true',v-bind:heading="modal63",v-bind:modal='"bd-example-modal-lg63"')
         .modal-body.o_act_window

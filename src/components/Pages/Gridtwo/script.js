@@ -97,6 +97,8 @@ export default{
             var self = this;
             self.$http.post("/employees/fetchEmployeeName", {"id": self.$route.params.id}).then(function (res) {
                 self.employeenames = res.body.result;
+                console.log("Employees List!!!!!!!!!!!!!");
+                console.log(self.employeenames);
             }, function (err) {
                 alert(err);
             });

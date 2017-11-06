@@ -9,7 +9,6 @@
     "watchify": "watchify -vd -e src/Pages/Setting/main.js -o public/Modules/Setting/build.js",
     "watchifypurchase": "watchify -vd -e src/Pages/Purchase/main.js -o public/Modules/Purchase/build.js",
     "watchifycontact": "watchify -vd -e src/Pages/Contact/main.js -o public/Modules/Contact/build.js",
-    "watchifySetting": "watchify -vd -e src/Pages/Setting/main.js -o public/Modules/Setting/build.js",
     "watchifyR": "watchify -vd -e src/Pages/Recruitment/main.js -o public/Modules/Recruitment/build.js",
     "watchifyA": "watchify -vd -e src/Pages/Attendance/main.js -o public/Modules/Attendance/build.js",
     "watchifyL": "watchify -vd -e src/Pages/Leaves/main.js -o public/Modules/Leaves/build.js",

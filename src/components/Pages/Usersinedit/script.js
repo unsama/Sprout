@@ -53,6 +53,8 @@ export default{
             notification: '',
             alias_id: '',
             barcode: '',
+            options: '',
+            options2: '',
             security_pin: '',
             name: '',
             status: '',
@@ -70,6 +72,7 @@ export default{
             }).then(function(res){self.options =res.body.data;},function(err){
                 //alert(err);
             });
+
             self.$http.post("/setting/user_data", {"id": self.$route.params.id}).then(function (res) {
                 var parentdata = res.body.data[0];
                 self.username = parentdata.username;
@@ -97,6 +100,12 @@ export default{
 
             }, function (err) {
                 //alert(err);
+            });
+            self.$http.post("/setting/source", {"company_name": self.company_name}).then(function(res){self.options =res.body.data;},function(err){
+
+            });
+            self.$http.post("/setting/get_alias", {"name": self.name}).then(function(res){self.options2 =res.body.data;},function(err){
+
             });
         },
         submit: function () {

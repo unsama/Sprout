@@ -5,18 +5,14 @@ import TableMain from "./../../partials/TableMain/TableMain.vue"
 import Companiesincompo from "./../../partials/Companiesincompo/Companiesincompo.vue"
 import Companycreatecompo from "./../../partials/Companycreatecompo/Companycreatecompo.vue"
 import Companyeditcompo from "./../../partials/Companyeditcompo/Companyeditcompo.vue"
-
-
 export default{
     created: function () {
         var self = this;
         $(function () {
-
             self.btnlinks.editbtnlink = "/setting/companycreate/"+self.$route.params.id;
             self.btnlinks.discardbtnlink = "/setting/companiesin/"+self.$route.params.id;
             self.select();
             self.submit();
-
         });
         document.title = this.title;
     },

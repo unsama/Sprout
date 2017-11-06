@@ -1,11 +1,13 @@
 .incomingmailserveredit
     DashboardController(v-bind:savedbtn='true', v-bind:discardbtn='true',v-bind:heading="head",v-bind:links="btnlinks")
+        .col-sm-6(style='padding:0px;' ,slot='job')
+            h4.samodashheading(style="font-size: 18px;") General Settings / Incoming Mail Servers
     incomingmailservercreatecompo
         .o_view_manager_content(slot='incoming')
             .o_form_view.o_form_editable
                 header
                     button.btn.btn-sm(type='button')
-                        span Test & Confirm
+                        span Test & Confirms
                     button.btn.btn-sm.o_form_invisible(type='button')
                         span Fetch Now
                     button.btn.btn-sm.o_form_invisible(type='button')

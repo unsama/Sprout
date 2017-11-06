@@ -1,5 +1,12 @@
 .incomingmailserverin
     DashboardController(v-bind:createbtn='true', v-bind:editbtn='true',v-bind:attachmentbtn='true',v-bind:actionbtn='true',v-bind:heading="head",v-bind:links="btnlinks")
+        span.o_pager_value(slot='page') {{counter}}
+            |  /
+            span.o_pager_limit(style="padding-right: 6px;") {{num}}
+
+            span.btn-group.btn-group-sm
+                button.fa.fa-chevron-left.btn.btn-icon.o_pager_previous#num10(@click="counter--",style='background-color:white;border-color: #adadad;color: #4c4c4c;')(type='button', accesskey='p')
+                button.fa.fa-chevron-right.btn.btn-icon.o_pager_next#num01(@click="counter++",style='background-color:white;border-color: #adadad;color: #4c4c4c;')(type='button', accesskey='n')
     incomingmailservereditcompo
         .o_view_manager_content(slot='incoming')
             .o_form_view.o_form_readonly
@@ -85,7 +92,7 @@
                                                             | Login Information
                                                 tr
                                                     td.o_td_label(colspan='1')
-                                                        label.o_form_label(for='o_field_input_301')
+                                                        label.o_form_label
                                                             | Username
                                                     td(colspan='1', style='width: 100%;')
                                                         span.o_form_field.o_form_required {{username}}

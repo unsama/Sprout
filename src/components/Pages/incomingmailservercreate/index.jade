@@ -1,6 +1,6 @@
 .incomingmailservercreate
     DashboardController(v-bind:savedbtn='true', v-bind:discardbtn='true',v-bind:heading="head",v-bind:links="btnlinks")
-        .col-sm-6(style='padding:0px;' ,slot='heading')
+        .col-sm-6(style='padding:0px;' ,slot='job')
             h4.samodashheading(style="font-size: 18px;") General Settings / Incoming Mail Servers / New
     incomingmailservercreatecompo
         .o_view_manager_content(slot='incoming')
@@ -42,7 +42,7 @@
                                             option(value='local') Local Server
                                 tr
                                     td.o_td_label(colspan='1')
-                                        label.o_form_label.o_form_label_empty.o_form_label_false(for='o_field_input_295')
+                                        label.o_form_label.o_form_label_empty.o_form_label_false
                                             | Last Fetch Date
                                     td(colspan='1', style='width: 33.3333%;')
                                         span.o_form_field_date.o_form_field.o_form_field_empty

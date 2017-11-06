@@ -1,6 +1,6 @@
 .usersinedit
     DashboardController(v-bind:savedbtn='true',v-bind:discardbtn='true',v-bind:actionbtn='true',v-bind:links='btnlinks',v-bind:heading='head' )
-        .col-sm-6(style='padding:0px;' ,slot='heading')
+        .col-sm-6(style='padding:0px;' ,slot='job')
             h4.samodashheading(style="font-size: 18px;") Users / {{ username }}
     .o_content(style='overflow-y: auto;margin-left: -15px;margin-right: -15px;height: 89vh;')
         .o_view_manager_content
@@ -85,7 +85,7 @@
                                     li.nav-item
                                         a.nav-link(href='#buzz2', role='tab', data-toggle='tab') Point of Sale
 
-                                // Tab panes
+
 
                             .tab-content
                                 #profile.tab-pane.fade.in.active(role='tabpanel')
@@ -109,12 +109,11 @@
                                                                 select
                                                                     option(v-for='option in options', v-bind:value="option.id")
                                                                         | {{ option.company_name }}
-                                                                //input.o_form_input.ui-autocomplete-input(type='text', autocomplete='off', v-model='company_id')
-                                                                //span.o_dropdown_button(draggable='false')
+
                                             tr
                                                 td.o_td_label(colspan='1')
-                                                    label.o_form_label.o_form_label_help(for='o_field_input_14', data-original-title='', title='')
-                                                        | Current Company
+                                                    label.o_form_label.o_form_label_help( data-original-title='', title='')
+                                                        | Current Companys
                                                 td(colspan='1', style='width: 100%;')
                                                     .o_form_field_many2one.o_with_button.o_form_field.o_form_required
                                                         .o_form_input_dropdown

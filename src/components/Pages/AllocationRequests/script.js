@@ -145,7 +145,7 @@ export default{
                                 val.date_to,
                                 val.status,
                             ],
-                            "url": "/Employees/Department_leave_select/"+val.id,
+                            "url": "/Employees/AllocationRequestShow/"+val.id,
                         });
                         console.log(data);
                     });
@@ -178,7 +178,7 @@ export default{
                                 val.date_to,
                                 val.status,
                             ],
-                            "url": "/Employees/Department_leave_select/"+val.id,
+                            "url": "/Employees/AllocationRequestShow/"+val.id,
                         });
 
                         console.log(data);
@@ -220,9 +220,8 @@ export default{
                                 val.date_to,
                                 val.status,
                             ],
-                            "url": "/Employees/Department_leave_select/"+val.id,
+                            "url": "/Employees/AllocationRequestShow/"+val.id,
                         });
-
                         console.log(data);
                     });
                 }

@@ -2,13 +2,11 @@ import DashboardController from "./../../partials/DashboardController/DashboardC
 import Tabs from "./../../partials/Tabs/Tabs.vue"
 import Modal from "./../../partials/Modal/Modal.vue"
 import TableMain from "./../../partials/TableMain/TableMain.vue"
-
-
 export default{
     created: function () {
         var self = this;
         $(function () {
-            $("#delete").click(function () {
+            $(".delete").click(function () {
                 self.submit_inside();
                 alert("are you sure delete the user");
                  window.location.href = "../users";
@@ -22,8 +20,7 @@ export default{
                 var r = confirm("Are you sure send resert pwd instructions");
                 if (r)
                 {
-                    // x="You pressed OK!";
-                    //console.log("asdasdas");
+
                     window.location.href = "../usersin"+self.$route.params.id;
                     self.send_resert_pwd_instructions();
                 }
@@ -36,21 +33,18 @@ export default{
                 $(".pwd").hide();
                 $(".show_pwd").show();
             });
-            $("#duplicate").click(function () {
+            $(".Duplicate").click(function () {
                 var r = confirm("Are you sure duplicate the user");
                 if (r)
                 {
                     // x="You pressed OK!";
-                    console.log("asdasdas");
+
                     window.location.href = "../users";
                     self.user_duplicate();
                 }
                 else
                 {
-                    // x="You pressed Cancel!";
                 }
-                //alert("Are you sure duplicate the user");
-
             });
             $('.SeeMore2').click(function(){
                 var text = $(this).html();
@@ -60,7 +54,6 @@ export default{
                     $(".check").addClass("fa fa-fw fa-check");
                 }else{
                     $(this).html('active');
-                    //$(".check").addClass("fa fa-fw fa-check");
                 }
             });
             self.btnlinks.editbtnlink = "/setting/usersinedit/"+self.$route.params.id;
@@ -90,7 +83,9 @@ export default{
                 planordersbtnlink: "",
                 changepasswordbtnlink: "",
                 exportbtnlink: "",
-                duplicatebtnlink: "",
+                deletedropbtnlink:"",
+                duplicatebtnlink:"",
+                planorderbtnlink:"",
             },
             username: '',
             email: '',

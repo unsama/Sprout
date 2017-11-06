@@ -335,6 +335,9 @@ router.get("/leaves/*", function(req, res, next){
 router.get("/employees",function(req, res, next){
     res.render('modules/employees', {title: 'Sprout'});
 });
+router.get("/employees/*",function(req, res, next){
+    res.render('modules/employees', {title: 'Sprout'});
+});
 router.get("/projects", function(req, res, next){
     res.render('modules/projects', {title: 'Sprout'});
 });

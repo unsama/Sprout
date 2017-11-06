@@ -7,11 +7,30 @@ export default{
     created: function () {
         var self = this;
         this.select();
-        $(function () {
-            self.btnlinks.discardbtnlink = "/setting/outgoingemailserverin/"+self.$route.params.id;
-
-        });
+        this.select1();
         document.title = this.title;
+        $(function () {
+            $("#num01").click(function () {
+                self.ssubmit();
+                self.select3();
+            });
+            $("#num10").click(function () {
+                self.psubmit();
+            });
+            self.btnlinks.discardbtnlink = "/setting/outgoingemailserverin/"+self.$route.params.id;
+            $("#save").click(function () {
+                var r = confirm("Are you sure update");
+                if (r)
+                {
+                    window.location.href = "../setting/outgoingemailserverin/"+self.$route.params.id;
+                    self.submit();
+                }
+                else
+                {
+
+                }
+            });
+        });
     },
     data () {
         return {
@@ -19,7 +38,7 @@ export default{
             head: "General Settings / Outgoing Mail Servers / New",
             btnlinks: {
                 savebtnlink:"",
-                discardbtnlink:""
+                discardbtnlink:"",
             },
             description_e: "",
             priority_e: "",
@@ -28,11 +47,68 @@ export default{
             connection_security_e: "",
             username_e: "",
             password_e: "",
-
+            num: "",
+            counter : 0,
         };
     },
-
     methods: {
+        ssubmit: function () {
+            var self = this;
+            self.$http.post("/setting/outgoinginfonext", {"id": self.$route.params.id}).then(function (res) {
+                var parentdata = res.body.data[0];
+                self.description_e = parentdata.description;
+                self.priority_e = parentdata.priority;
+                self.$route.params.id = parentdata.id;
+                self.smtp_server_e = parentdata.smtp_server;
+                self.smtp_port_e = parentdata.smtp_port;
+                self.connection_security_e = parentdata.smtp_serconnection_securityver;
+                self.username_e = parentdata.username;
+                self.password_e = parentdata.password;
+
+                console.log(parentdata);
+                //console.log(self.status);
+                //console.log(this.$route.query.id);
+
+            }, function (err) {
+                //alert(err);
+            });
+
+
+
+
+
+        },
+        psubmit: function () {
+            var self = this;
+            self.$http.post("/setting/outgoinginfoback", {"id": self.$route.params.id}).then(function (res) {
+                var parentdata = res.body.data[0];
+                self.description_e = parentdata.description;
+                self.priority_e = parentdata.priority;
+                self.$route.params.id = parentdata.id;
+                self.smtp_server_e = parentdata.smtp_server;
+                self.smtp_port_e = parentdata.smtp_port;
+                self.connection_security_e = parentdata.smtp_serconnection_securityver;
+                self.username_e = parentdata.username;
+                self.password_e = parentdata.password;
+                console.log(parentdata);
+
+            }, function (err) {
+                //alert(err);
+            });
+
+
+        },
+        select1: function () {
+            var self = this;
+            self.$http.post("/setting/numsetting", {"id": self.$route.params.id}).then(function (res) {
+                var parentdata = res.body.data[0];
+                self.num = parentdata.count;
+                console.log(res.body)
+                console.log(self.num)
+                //console.log(this.$route.query.id);
+            }, function (err) {
+            });
+        },
         testsmtp: function () {
             var self = this;
             self.$http.get("/setting/testsmtp", {

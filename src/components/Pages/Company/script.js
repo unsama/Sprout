@@ -5,28 +5,22 @@ import Tabledrag from "./../../partials/Tabledrag/Tabledrag.vue"
 export default{
     created: function () {
         var self = this;
-        var del = []; // initialize empty array
+        var del = [];
         document.title = this.title;
         this.select();
+        this.select1();
         $(function () {
             $("#action").hide();
-            // $("#changepassword").click(function () {
-            //     self.pwd_update();
-            //     window.location.href = "/setting/users";
-            // });
             $(".checkBoxClass").click(function () {
                 if($(this).prop('checked')){
                     $("#action").show();
                 }else{
                     $("#action").hide();
                 }
-                // alert("check it");
             });
-            $("#delete").click(function () {
+            $(".delete").click(function () {
                 $(".checkBoxClass:checked").each(function(){
                     del.push($(this).val());
-                    // self.btnlinks.deletebtnlink = "/setting/users/"+del;
-                    // self.delete();
                 });
                 console.log(del);
                 self.delete(del);
@@ -40,12 +34,15 @@ export default{
             head: "Companies",
             title: 'Companies - Sprout',
             btnlinks: {
-                createbtnlink: "/setting/companycreate",
+                createbtnlink: "/setting/settingcompanycreate",
                 importbtnlink: "/setting/companyimport",
                 deletebtnlink: "",
                 exportbtnlink: "",
                 changepasswordbtnlink: "",
                 changepasswordbtnlink_modal: "",
+                deletedropbtnlink:"",
+                duplicatebtnlink:"",
+                planorderbtnlink:"",
             },
             tableheader: [
                 "ID",
@@ -60,6 +57,8 @@ export default{
                 "",
                 "",
                 "",
+                "",
+
 
             ],
             tabledata: {
@@ -79,10 +78,65 @@ export default{
                     ],
                     "url": "/setting/usersin"
                 },
-            }
+            },
+            num: '',
+            counter: 0,
         }
     },
     methods: {
+        select3: function () {
+            var self = this;
+            self.counter+=10;
+            self.$http.post("/setting/companytablenext", {
+                "counter": self.counter,
+            }).then(function(res){
+                var data = res.body.data;
+                self.tabledata = [];
+                if(data.length > 0){
+                    data.forEach(function(val) {
+                        self.tabledata.push({
+                            "data": [
+                                val.id,
+                                val.company_name,
+                                val.company_name,
+                            ],
+                            "url": "/setting/companiesin/"+val.id,
+                        });
+                    });
+                    console.log(self.tabledata);
+                }
+            },function(err){
+                alert(err);
+            });
+        },
+        select4: function () {
+            var self = this;
+            self.counter-=10;
+            self.$http.post("/setting/companytableback", {
+                "counter": self.counter,
+            }).then(function(res){
+                var data = res.body.data;
+                self.tabledata = [];
+                if(data.length > 0){
+                    data.forEach(function(val) {
+                        self.tabledata.push({
+                            "data": [
+                                val.id,
+                                val.company_name,
+                                val.company_name,
+                            ],
+                            "url": "/setting/companiesin/"+val.id,
+
+                        });
+                    });
+                    console.log(self.tabledata);
+                }
+
+            },function(err){
+                alert(err);
+            });
+
+        },
         select: function () {
             var self = this;
             self.$http.post("/setting/companytable", {
@@ -108,6 +162,17 @@ export default{
 
             },function(err){
                 alert(err);
+            });
+        },
+        select1: function () {
+            var self = this;
+            self.$http.post("/setting/numcompany", {"id": self.$route.params.id}).then(function (res) {
+                var parentdata = res.body.data[0];
+                self.num = parentdata.count;
+                console.log(res.body)
+                console.log(self.num)
+
+            }, function (err) {
             });
         },
         delete: function (del) {

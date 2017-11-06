@@ -14,7 +14,7 @@ export default{
             title: "Import a File - Sprout",
             btnlinks: {
                 savebtnlink:"",
-                discardbtnlink:"/setting/company"
+                discardbtnlink:""
             },
 
         }

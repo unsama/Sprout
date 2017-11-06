@@ -5,25 +5,17 @@ export default{
         $(function () {
             $('#save').on("click",function(){
                 document.getElementById('submitButton').click();
-
             });
             var r = confirm("Are you sure update user");
             if (r)
             {
-                // x="You pressed OK!";
-                //console.log("asdasdas");
                 window.location.href = "../usersin/"+self.$route.params.id;
-                self.submit();
+                this.submit()
             }
             else
             {
-                // x="You pressed Cancel!";
             }
         });
-
-
-
-
         self.$http.get("/setting/create-company/get-meta").then(function(res){
             if(res.data.status){
                 console.log("GET on get-company Failed! \nReason: " + res.data.message);
@@ -41,8 +33,6 @@ export default{
         });
     },
     data(){
-        // AZEEM ULLAH's commit starts here
-
         return {
             imageSrc: "/img/demo/avatar/avatar-person.png",
             title: 'Discuss',
@@ -80,33 +70,6 @@ export default{
 
         submit: function () {
             var self = this;
-            // self.$http.post('/setting/create-company/upload-image', self.imageData, {headers: { 'Content-Type': 'multipart/form-data' } }).
-            // then(function (response) {
-            //     console.log(response.data.path);
-            //     console.log(response.data);
-            //     this.imageSrc = response.data.path.replace('public','');
-            //
-            //
-            //
-            //     console.log(this.imageSrc);
-            //
-            //
-            //
-            //
-            //          CODE CUT------ AZEEM ULLAH
-            //
-            //
-            //
-            //
-            // }).catch(function (error) {
-            //     console.log(error) // catch your error
-            // });
-            //
-            //
-
-
-
-
             self.$http.post("/setting/create-company", {
                 "companyName": self.companyName,
                 "companyTagline": self.companyTagline,

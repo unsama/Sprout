@@ -171,11 +171,27 @@ export default{
             });
 
 
+            // $("#save").click(function () {
+            //     self.submit();
+            //     window.location.href = "/Employees/CreateDep/";
+            //
+            // });//#saveclose
             $("#save").click(function () {
-                self.submit();
-                window.location.href = "/Employees/CreateDep/";
+                if(self.type=="")
+                {
+                    $("#success-alert").fadeTo(2000, 500).slideUp(500, function(){
+                        $("#success-alert").slideUp(500);
 
-            });//#saveclose
+
+                    });
+
+                }
+                else{
+                    self.submit();
+                    window.location.href = "/Employees/CreateDep/";
+                }
+
+            });
 
             $("#saveclose").click(function () {
                 self.addDepartment();
@@ -325,6 +341,7 @@ export default{
     data(){
         return {
 
+            type:'',
             dates_value6:'', //birthDate
             dates_value7:'',//mediacalExamDate
             employeeName: '',
@@ -537,8 +554,6 @@ export default{
         // },
         selectJobtitleAndDepartmentName: function () {
             var self = this;
-            //alert(self.companyName);
-            //alert("Inside Method selectJobtitleAndDepartmentName(): employeeId  =  "+ self.employeeId);
             self.$http.post("/Employees/fetchJobTitleAndDept", {
                 "employeeId": self.employeeId,
 
@@ -547,10 +562,7 @@ export default{
                 console.log(jobAndDept);
                 self.jobTitle = jobAndDept.job_tittle;
                 self.departmentId = jobAndDept.name;
-                alert("depart name : "+jobAndDept.name);
-
             },function(err){
-                alert(err);
             });
             self.$http.post("/Employees/fetchContactStatus", {"statname": self.name}).then(function(res){self.status_name_drop =res.body.result;},function(err){
             });
@@ -562,38 +574,37 @@ export default{
              var self = this;
 
             self.$http.post("/employees/fetchEmployeeName", {"emplyee_name": self.id}).then(function(res){self.emp_table =res.body.result;},function(err){
-                //alert(err);
+
             });
 
             self.$http.post("/employees/fetchJobTitles", {"jobTitle": self.job_tittle	}).then(function(res){self.jobPositionsTable =res.body.result;},function(err){
-                //alert(err);
+
             });
 
             self.$http.post("/employees/fetchParentDepartmentNames", {"deptName": self.employeename	}).then(function(res){self.dept_table =res.body.result;},function(err){
-                //alert(err);
             });
 
             self.$http.post("/employees/fetchContractType", {"contractType": self.contract_type}).then(function(res){self.EmployeeContractTypeNames =res.body.result;},function(err){
-                //alert(err);
+
             });
 
             self.$http.post("/employees/fetchWorkScheduleName", {"work_schedule_name:'',": self.name}).then(function(res){self.workingSchedule_table_ =res.body.result;},function(err){
-                //alert(err);
+
             });
             self.$http.post("/employees/fetchParentDepartmentNamesid", {"id": self.abc}).then(function (res) {
-                //console.log(res.body);
+
                 var parentdata = res.body.result[0];
                 self.dept_name = parentdata.name;
                 console.log(parentdata);
 
             }, function (err) {
-                //alert(err);
+
             });
 
             self.$http.post("/employees/fetchWorkingAddresses", {"workingAddress": self.address}).then(function (res) {
                 self.workingAddresses = res.body.result;
             }, function (err) {
-                //alert(err);
+
             });
 
             // self.$http.post("/employees /fetchdeparments", {"id": self.$route.params.id}).then(function (res) {
@@ -607,41 +618,40 @@ export default{
             self.$http.post("/employees/fetchDepartments", {"deptName": self.name}).then(function (res) {
                 self.departnents = res.body.result;
             }, function (err) {
-                // alert(err);
+
             });
             self.$http.post("/employees/fetchDepartments1", {"deptName": self.name}).then(function (res) {
                 self.departnents1 = res.body.result;
             }, function (err) {
-                // alert(err);
+
             });
 
             self.$http.post("/employees/fetchJobTitles", {"jobTitle_name": self.job_title}).then(function (res) {
                 self.jobTitles = res.body.result;
             }, function (err) {
-                // alert(err);
             });
 
             self.$http.post("/employees/fetchManagers", {"managerName": self.employeename}).then(function (res) {
                 self.managers = res.body.result;
             }, function (err) {
-                //alert(err);
+
             });
             self.$http.post("/employees/fetchManagers1", {"managerName": self.employeename}).then(function (res) {
                 self.managers1 = res.body.result;
             }, function (err) {
-                //alert(err);
+
             });
 
             self.$http.post("/employees/fetchCoachs", {"coach_name": self.employeename}).then(function (res) {
                 self.coachs = res.body.result;
             }, function (err) {
-                // alert(err);
+
             });
 
             self.$http.post("/employees/fetchWorkingTimeNames", {"workingTime": self.name}).then(function (res) {
                 self.workingScedules = res.body.result;
             }, function (err) {
-                // alert(err);
+
             });
 
             // self.$http.post("/employees/fetchmanager", {"manager_name": self.employeename	}).then(function(res){self.emp_table =res.body.result;},function(err){
@@ -652,25 +662,25 @@ export default{
             self.$http.post("/employees/fetchHomeAddresses", {"HomeAddress": self.name}).then(function (res) {
                 self.homeAddresses = res.body.result;
             }, function (err) {
-                //alert(err);
+
             });
 
             self.$http.post("/employees/FetchBankAccountNumbers", {"AccNo": self.account_number}).then(function (res) {
                 self.BankAccountNumbers = res.body.result;
             }, function (err) {
-                //alert(err);
+
             });
 
             self.$http.post("/employees/fetchCountries", {"countryName": self.country}).then(function (res) {
                 self.countries = res.body.result;
             }, function (err) {
-                //alert(err);
+
             });
             //acoountTable
             self.$http.post("/employees/fetchAccounts", {"accName": self.name}).then(function (res) {
                 self.accounts = res.body.result;
             }, function (err) {
-                //alert(err);
+
             });
 
             self.$http.post("/employees/fetchCompanies", {"companyName": self.company_name}).then(function (res) {
@@ -681,7 +691,7 @@ export default{
             self.$http.post("/employees/fetchRelatedUsers", {"relatedUser": self.username}).then(function (res) {
                 self.relatedUsers = res.body.result;
             }, function (err) {
-                //alert(err);
+
             });
 
 
@@ -692,26 +702,7 @@ export default{
 
 
         submit: function () {
-            alert("m here jst inside the submit() body.");
-
-
             var self = this;
-            alert("employeeId =  "+self.employeeId);
-            alert("contractType_id =   "+self.contractType_id);
-            alert("jobTitleId =   "+self.jobTitleId);
-            alert("trial_period_duration_from =    "+self.trialFrom);
-            alert("trial_period_duration_to =    "+self.trialTo);
-            alert("duration_from =    "+self.durationFrom);
-            alert("duration_from =    "+self.durationTo);
-            alert("visa_expire_date =    "+self.visaEpireDate);
-            alert("work_schedule_id =    "+self.work_schedule_id);
-            alert("jobTitle =    "+self.jobTitle);
-            alert("department id =    "+self.departmentId);
-            alert("notes  =    "+self.notes);
-            alert("visaNo  =    "+self.visaNo);
-            alert("workPermitNo  =    "+self.workPermitNo);
-            alert("status_name  =    "+self.status_name);
-
             self.$http.post("/Employees/addNewContract", {
                 "referenceName": self.referenceName,
                 "employeeId":self.employeeId,
@@ -730,16 +721,11 @@ export default{
                 "visaNo":self.visaNo,
                 "workPermitNo":self.workPermitNo,
                 "status_name": self.status_name,
-
-
             }).then(function(res){
                 console.log(res.body);
             },function(err){
-                //alert(err);
-            });
-           // alert("trial_period_duration_from =    "+self.trial_period_duration_from);
-            alert("This is the last statement in submit() function body!!!");
 
+            });
         },
     },
 

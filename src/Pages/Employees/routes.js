@@ -7,8 +7,8 @@ import EmpContracts from "./../../components/Pages/EmpContracts/EmpContracts.vue
 import EmpContractsEdit from "./../../components/Pages/EmpContractsEdit/EmpContractsEdit.vue"
 import EmpContractscreate  from "./../../components/Pages/EmpContractscreate/EmpContractscreate.vue"
 import EmpDash from "./../../components/Pages/EmpDash/EmpDash.vue"
-import Empatt from "./../../components/Pages/Empatt/Empatt.vue"
 import Emp   from "./../../components/Pages/Emp/Emp.vue"
+import Empatt from "./../../components/Pages/Empatt/Empatt.vue"
 import Hrs from "./../../components/Pages/Hrs/Hrs.vue"
 import Hr  from "./../../components/Pages/Hr/Hr.vue"
 import Grids   from "./../../components/Pages/Grids/Grids.vue"
@@ -47,18 +47,14 @@ import AllocationEdit from "./../../components/Pages/AllocationEdit/AllocationEd
 import AllocationRequests from "./../../components/Pages/AllocationRequests/AllocationRequests.vue"
 import Allocation from "./../../components/Pages/Allocation/Allocation.vue"
 import AllocationImport from "./../../components/Pages/AllocationImport/AllocationImport.vue"
+import DepExpcreate  from "./../../components/Pages/DepExpcreate/DepExpcreate.vue"
 import LeaveRequestcreate from "./../../components/Pages/LeaveRequestcreate/LeaveRequestcreate.vue"
 import LeaveRequestEdit from "./../../components/Pages/LeaveRequestEdit/LeaveRequestEdit.vue"
 import LeaveRequest  from "./../../components/Pages/LeaveRequest/LeaveRequest.vue"
-import leaves_allocation_import from "./../../components/Pages/leaves_allocation_import/leaves_allocation_import.vue"
-import leaves_select from "./../../components/Pages/leaves_select/leaves_select.vue"
-import leave_edit from "./../../components/Pages/leave_edit/leave_edit.vue"
-import leave_duplicate from "./../../components/Pages/leave_duplicate/leave_duplicate.vue"
 import LeaveDep from "./../../components/Pages/LeaveDep/LeaveDep.vue"
+import DepExpEdit from "./../../components/Pages/DepExpEdit/DepExpEdit.vue"
 import ImportLeave from "./../../components/Pages/ImportLeave/ImportLeave.vue"
 import Expsimport from "./../../components/Pages/Expsimport/Expsimport.vue"
-import DepExpcreate  from "./../../components/Pages/DepExpcreate/DepExpcreate.vue"
-import DepExpEdit from "./../../components/Pages/DepExpEdit/DepExpEdit.vue"
 import DepExps from "./../../components/Pages/DepExps/DepExps.vue"
 import DepSettingcreate from "./../../components/Pages/DepSettingcreate/DepSettingcreate.vue"
 import DepSettingEdit from "./../../components/Pages/DepSettingEdit/DepSettingEdit.vue"
@@ -75,31 +71,7 @@ import TableHrEdit from "./../../components/Pages/TableHrEdit/TableHrEdit.vue"
 import HrGrid from "./../../components/Pages/HrGrid/HrGrid.vue"
 import Gridtwo from "./../../components/Pages/Gridtwo/Gridtwo.vue"
 import Gridtwotable from "./../../components/Pages/Gridtwotable/Gridtwotable.vue"
-import HrDepscreate from "./../../components/Pages/HrDepscreate/HrDepscreate.vue"
-import HrDeps from "./../../components/Pages/HrDeps/HrDeps.vue"
-import HrDepsEdit from "./../../components/Pages/HrDepsEdit/HrDepsEdit.vue"
-import Absentcreate from "./../../components/Pages/Absentcreate/Absentcreate.vue"
-import Absent from "./../../components/Pages/Absent/Absent.vue"
-import AttHr from "./../../components/Pages/AttHr/AttHr.vue"
-import Attcreate from "./../../components/Pages/Attcreate/Attcreate.vue"
-import AttHrEdit from "./../../components/Pages/AttHrEdit/AttHrEdit.vue"
-import CreateDepone from "./../../components/Pages/CreateDepone/CreateDepone.vue"
-import Badge from "./../../components/Pages/Badge/Badge.vue"
-import TypeContract from "./../../components/Pages/TypeContract/TypeContract.vue"
-import EditContract from "./../../components/Pages/EditContract/EditContract.vue"
-import ReqSettingEdit from "./../../components/Pages/ReqSettingEdit/ReqSettingEdit.vue"
-import ReqDep from "./../../components/Pages/ReqDep/ReqDep.vue"
-import DuplicateContract from "./../../components/Pages/DuplicateContract/DuplicateContract.vue"
-import Test from "./../../components/Pages/Test/Test.vue"
-import HrImport from "./../../components/Pages/HrImport/HrImport.vue"
-import HrDuplicate from "./../../components/Pages/HrDuplicate/HrDuplicate.vue"
-import Employeeslayout from "./../../components/Pages/Employeeslayout/Employeeslayout.vue"
-import DepartmentDuplicate from "./../../components/Pages/DepartmentDuplicate/DepartmentDuplicate.vue"
-import hierarchy from "./../../components/Pages/hierarchy/hierarchy.vue"
-import Department_leave_select from "./../../components/Pages/Department_leave_select/Department_leave_select.vue"
-import department_leave_edit from "./../../components/Pages/department_leave_edit/department_leave_edit.vue"
-import department_leave_duplicate from "./../../components/Pages/department_leave_duplicate/department_leave_duplicate.vue"
-import department_leave_create from "./../../components/Pages/department_leave_create/department_leave_create.vue"
+
 import DashEmp   from "./../../components/partials/DashEmp/DashEmp.vue"
 import Grid from "./../../components/partials/Grid/Grid.vue"
 import Report   from "./../../components/partials/Report/Report.vue"
@@ -123,11 +95,43 @@ import Request_Quotation_Lower from "./../../components/partials/Request_Quotati
 import leaveallocationRequest from "./../../components/partials/leaveallocationRequest/leaveallocationRequest.vue"
 import selectallocation from "./../../components/partials/selectallocation/selectallocation.vue"
 
+import HrDepscreate from "./../../components/Pages/HrDepscreate/HrDepscreate.vue"
+import HrDeps from "./../../components/Pages/HrDeps/HrDeps.vue"
+import HrDepsEdit from "./../../components/Pages/HrDepsEdit/HrDepsEdit.vue"
+import Absentcreate from "./../../components/Pages/Absentcreate/Absentcreate.vue"
+import Absent from "./../../components/Pages/Absent/Absent.vue"
+import AttHr from "./../../components/Pages/AttHr/AttHr.vue"
+import Attcreate from "./../../components/Pages/Attcreate/Attcreate.vue"
+import AttHrEdit from "./../../components/Pages/AttHrEdit/AttHrEdit.vue"
+import CreateDepone from "./../../components/Pages/CreateDepone/CreateDepone.vue"
+import Badge from "./../../components/Pages/Badge/Badge.vue"
+import TypeContract from "./../../components/Pages/TypeContract/TypeContract.vue"
+import EditContract from "./../../components/Pages/EditContract/EditContract.vue"
+import ReqSettingEdit from "./../../components/Pages/ReqSettingEdit/ReqSettingEdit.vue"
+import ReqDep from "./../../components/Pages/ReqDep/ReqDep.vue"
+import DuplicateContract from "./../../components/Pages/DuplicateContract/DuplicateContract.vue"
+import Test from "./../../components/Pages/Test/Test.vue"
+import HrImport from "./../../components/Pages/HrImport/HrImport.vue"
+import HrDuplicate from "./../../components/Pages/HrDuplicate/HrDuplicate.vue"
+import Employeeslayout from "./../../components/Pages/Employeeslayout/Employeeslayout.vue"
+import DepartmentDuplicate from "./../../components/Pages/DepartmentDuplicate/DepartmentDuplicate.vue"
+import hierarchy from "./../../components/Pages/hierarchy/hierarchy.vue"
+import AllocationRequestShow from "./../../components/Pages/AllocationRequestShow/AllocationRequestShow.vue"
+import leaves_allocation_import from "./../../components/Pages/leaves_allocation_import/leaves_allocation_import.vue"
+import leaveRequestShow from "./../../components/Pages/leaveRequestShow/leaveRequestShow.vue"
+import EditLeaveRequest from "./../../components/Pages/EditLeaveRequest/EditLeaveRequest.vue"
+import DuplicateLeaveRequest from "./../../components/Pages/DuplicateLeaveRequest/DuplicateLeaveRequest.vue"
+import AllocationRequestEdit from "./../../components/Pages/AllocationRequestEdit/AllocationRequestEdit.vue"
+import AllocationRequestDuplicate from "../../components/Pages/AllocationRequestDuplicate/AllocationRequestDuplicate.vue"
+import department_leave_create from "./../../components/Pages/department_leave_create/department_leave_create.vue"
+
+
+
 const routes = [
     { path: '/employees', component: Test,
         children: [
             { path: '', component: Employeeslayout,
-            children: [
+                children: [
                     { path: '', component: Gridtwo },
                     { path: 'ReportExpense', component: ReportExpense},
                     { path: 'Request_Quotation_Lower', component: Request_Quotation_Lower},
@@ -187,7 +191,7 @@ const routes = [
                     { path: 'ContractNew', component: ContractNew},
                     { path: 'Contracttwo', component: Contracttwo},
                     { path: 'DepNew', component: DepNew},
-                    { path: 'NewDep', component: NewDep},
+                    { path: 'NewDep/:id', component: NewDep},
                     { path: 'Ctype', component: Ctype},
                     { path: 'DepTable', component: DepTable},
                     { path: 'AllocationRequests', component: AllocationRequests},
@@ -242,20 +246,21 @@ const routes = [
                     { path: 'ReqDep/:id', component: ReqDep },
                     { path: 'DepartmentDuplicate/:id', component: DepartmentDuplicate },
                     { path: 'hierarchy/:id', component: hierarchy },
-                    { path: 'Department_leave_select/:id', component: Department_leave_select },
+                    { path: 'AllocationRequestShow/:id', component: AllocationRequestShow },
                     { path: 'leaves_allocation_import', component: leaves_allocation_import },
-                    { path: 'leaves_select/:id', component: leaves_select },
-                    { path: 'leave_edit/:id', component: leave_edit },
-                    { path: 'leave_duplicate/:id', component: leave_duplicate },
-                    { path: 'department_leave_edit/:id', component: department_leave_edit },
-                    { path: 'department_leave_duplicate/:id', component: department_leave_duplicate },
+                    { path: 'leaveRequestShow/:id', component: leaveRequestShow },
+                    { path: 'EditLeaveRequest/:id', component: EditLeaveRequest },
+                    { path: 'DuplicateLeaveRequest/:id', component: DuplicateLeaveRequest },
+                    { path: 'AllocationRequestEdit/:id', component: AllocationRequestEdit },
+                    { path: 'AllocationRequestDuplicate/:id', component: AllocationRequestDuplicate },
                     { path: 'department_leave_create', component: department_leave_create },
+
 
 
                 ]
             },
         ]
-},
+    },
 ];
 
 module.exports = routes

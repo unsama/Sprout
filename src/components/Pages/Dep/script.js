@@ -8,9 +8,26 @@ export default {
         var self = this;
         self.select();
         $(function () {
+            // $("#save").click(function () {
+            //     self.submit();
+            //     window.location.href = "/employees/EmpDash";
+            // });
+
             $("#save").click(function () {
-                self.submit();
-                window.location.href = "/employees/EmpDash";
+                if(self.type=="")
+                {
+                    $("#success-alert").fadeTo(2000, 500).slideUp(500, function(){
+                        $("#success-alert").slideUp(500);
+
+
+                    });
+
+                }
+                else{
+                    self.submit();
+                    window.location.href = "/employees/EmpDash";
+                }
+
             });
 
 
@@ -39,7 +56,7 @@ export default {
             //container variables to store data temporarily after fetching data from database
             parentDepartmentNames: '',
             employeeNames: '',
-
+            type:'',
 
             // declare variables to save dep page data into database, in other words insert querry variables
             departName: '',

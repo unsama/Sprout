@@ -1,8 +1,6 @@
 import DashboardController from "./../../partials/DashboardController/DashboardController.vue"
 import incomingmailservercreatecompo from "./../../partials/incomingmailservercreatecompo/incomingmailservercreatecompo.vue"
 
-
-
 export default{
     created: function () {
         var self = this;

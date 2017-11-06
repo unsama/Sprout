@@ -8,19 +8,31 @@ export default{
         var self = this;
         this.select();
         document.title = this.title;
-        $("#delete").click(function () {
-            var r = confirm("are you sure delete");
-            if (r) {
-                window.location.href = "../incomingmailserver";
-                self.submit_inside();
-            } else {
-                // x="You pressed Cancel!";
-            }
+        $(function() {
 
+            $(".delete").click(function () {
+                var r = confirm("are you sure delete");
+                if (r) {
+                    window.location.href = "../incomingmailserver";
+                    self.submit_inside();
+                } else {
+
+                }
+            });
+            $("#save").click(function () {
+                var r = confirm("are you sure update");
+                if (r) {
+                    window.location.href = "../incomingmailserver";
+                    self.submit();
+                } else {
+                }
+
+            });
         });
+
         self.select();
         self.btnlinks.discardbtnlink = "/setting/incomingmailserverin/"+self.$route.params.id;
-        self.submit();
+
 
     },
     data () {
@@ -67,26 +79,26 @@ export default{
                 alert(err);
             });
         },
-        // submit: function () {
-        //     var self = this;
-        //     self.$http.post("/setting/incoming_update", {
-        //         "id": self.$route.params.id,
-        //         "name": self.name,
-        //         "servertype": self.servertype,
-        //         "servername": self.servername,
-        //         "port": self.port,
-        //         "ssl": self.ssl,
-        //         "username": self.username,
-        //         "password": self.password,
-        //         "newrecord": self.newrecord,
-        //         "status": self.status,
-        //     }).then(function(res){
-        //         console.log(res.body);
-        //         alert(self.portalaccess);
-        //     },function(err){
-        //         alert(err);
-        //     });
-        // },
+        submit: function () {
+            var self = this;
+            self.$http.post("/setting/incoming_update", {
+                "id": self.$route.params.id,
+                "name": self.name,
+                "servertype": self.servertype,
+                "servername": self.servername,
+                "port": self.port,
+                "ssl": self.ssl,
+                "username": self.username,
+                "password": self.password,
+                "newrecord": self.newrecord,
+                "status": self.status,
+            }).then(function(res){
+                console.log(res.body);
+                alert(self.portalaccess);
+            },function(err){
+                alert(err);
+            });
+        },
         select: function () {
             var self = this;
             self.$http.post("/setting/incoming_edit_service", {"id": self.$route.params.id}).then(function (res) {

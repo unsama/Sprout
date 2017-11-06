@@ -12,14 +12,10 @@ export default{
         console.log("this is some check");
         $(function () {
             $("#save").click(function () {
-                self.$validator.validateAll().then(result => {
-                    if (!result) {
-                        // validation failed.
-                    }
+
                     self.submit();
-                    alert('aaa')
                     window.location.href = "../setting/users";
-                });
+
             });
             $('#submitSaveBtn').on("click",function(){
 
@@ -33,7 +29,7 @@ export default{
             title: 'Discuss',
             username: '',
             email: '',
-            password: '',
+            password: 'admin123',
             company_name: '',
             current_company: '',
             sales: '',
@@ -79,22 +75,20 @@ export default{
     methods: {
         select: function () {
             var self = this;
-            //alert(self.companyName);
+
             self.$http.post("/setting/source", {"company_name": self.company_name}).then(function(res){self.options =res.body.data;},function(err){
-                //alert(err);
+
             });
             self.$http.post("/setting/get_alias", {"name": self.name}).then(function(res){self.options2 =res.body.data;},function(err){
-                //alert(err);
+
             });
         },
         submit: function () {
-            //alert("adasdsadsad");
             var self = this;
-            //var ckeditor_value = CKEDITOR.instances.editor1.getData();
-            //alert(self.current_company+ " ");
             self.$http.post("/setting/add_user", {
                 "username": self.username,
                 "company_name": self.company_name,
+                "password": self.password,
                 "current_company": self.current_company,
                 "email": self.email,
                 "country_id": self.country_id,
@@ -131,8 +125,6 @@ export default{
         },
         validateBeforeSubmit() {
             this.$validator.validateAll().then(() => {
-                // eslint-disable-next-line
-
                 this.submit();
                 alert('From Submitted!');
             }).catch(() => {

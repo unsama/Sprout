@@ -189,7 +189,7 @@ export default{
                                 val.date_to,
                                 val.status,
                             ],
-                            "url": "/Employees/leaves_select/"+val.id,
+                            "url": "/Employees/leaveRequestShow/"+val.id,
                         });
                         console.log(data);
                     });

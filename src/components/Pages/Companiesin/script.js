@@ -8,7 +8,7 @@ export default{
         var self = this;
         this.select();
         $(function () {
-            $("#delete").click(function () {
+            $(".delete").click(function () {
                 self.delete_inside();
                 alert("are you sure delete the user");
                 window.location.href = "../company";
@@ -41,7 +41,6 @@ export default{
             self.submit();
             $("#num01").click(function () {
                 self.previous_pagination();
-
             });
             $("#num10").click(function () {
                 self.next_pagination();
@@ -55,13 +54,15 @@ export default{
             title: 'Administrators - Sprout',
             modalhead: 'Change Password',
             btnlinks: {
-                createbtnlink: "/setting/companycreate",
+                createbtnlink: "/setting/settingcompanycreate",
                 editbtnlink: "/setting/",
                 assignedtasksbtnlink: "/setting/userassignedtask",
                 planordersbtnlink: "",
                 changepasswordbtnlink: "",
                 exportbtnlink: "",
-                duplicatebtnlink: ""
+                deletedropbtnlink:"",
+                duplicatebtnlink:"",
+                planorderbtnlink:"",
             },
             company_name: '',
             tag_line: '',

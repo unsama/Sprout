@@ -12,7 +12,7 @@
 
             .col-sm-6.dashcontrollerbutton(style='padding-top: 24px;')
                 router-link.links.btn.btn-primary.samobuttopcontroller1#create(style="color:white;font-size: 13px;" ,v-if='createbtn', v-bind:to="links.createbtnlink")
-                    | Creates
+                    | Create
                 router-link.links.btn.btn-primary.samobuttopcontroller1(style="color:white;font-size: 13px;" ,v-if='starbtn', v-bind:to="links.starbtnlink")
                     | Unstar all
                 router-link.links.btn.btn-primary.samobuttopcontroller(style="color:white;font-size: 13px;" ,v-if='Invitebtn', v-bind:to="links.Invitebtnlink")
@@ -31,16 +31,14 @@
                     | Edit
                 router-link.btn.btn-primary.disabled.samobuttopcontroller2(style="font-size: 13px;color:white;",v-if='validatebtn', v-bind:to="links.validatebtnlink", id='edit1')
                     | Validate
-                router-link.btn.btn-primary.samobuttopcontroller2#save(style="font-size: 13px;color:white;",v-if='savedbtn',v-bind:to="links.savebtnlink")
+                router-link.btn.btn-primary.samobuttopcontroller2#save(style="font-size: 13px;color:white;",v-if='savedbtn', v-bind:to="links.savebtnlink", type="submit")
                     | Save
                 router-link.btn.btn-default.samobuttopcontroller(style="font-size: 13px;color: #4c4c4c;", v-if='discardbtn', v-bind:to="links.discardbtnlink")
                     | Discard
-                a.btn.btn-default.samobuttopcontroller#activity_discardbtn(style="font-size: 13px;display:none;", v-if='discard1btn',v-bind:to="links.discard1btnlink")
+                a.btn.btn-default.samobuttopcontroller#activity_discardbtn(style="font-size: 13px;display:none;", v-if='discard1btn', v-bind:to="links.discard1btnlink")
                     | Discard
                 router-link.btn.btn-secondary.samobuttopcontroller(style="font-size: 13px;", v-if='cancelbtn', v-bind:to="links.cancelbtnlink")
                     | Cancel
-                router-link.btn.btn-secondary.samobuttopcontroller#create_pdf(style="font-size: 13px;",v-if='pbtn', v-bind:to="links.printsbtnlink")
-                    | Prints
                 .button-group.samodropdownbutton2(v-if='measurebtn')
                     button.btn.btn-default.btn-sm.dropdown-toggle.measurebtn(type='button', data-toggle='dropdown') Measure
                         span.glyphicon.glyphicon-cog
@@ -83,7 +81,7 @@
                             a.small.dbc(href='#', data-value='option6', tabindex='-1')
                                 input(type='checkbox')
                                 |  Count
-                .dropdown.samodropdownbutton2#action(style='float: right;margin-top: -15px;', v-if='actionbtn')
+                .dropdown.samodropdownbutton2(style='float: right;margin-top: -15px;', v-if='actionbtn')
                     button.btn.btn-secondary.dropdown-toggle.samodropdownmenubutton(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false',style="font-size: 12px;border-radius: 0px;")
                         span.fa.fa-filter.iconbutton
                         | Action
@@ -91,21 +89,19 @@
                         router-link.dropdown-item.delete(v-if='deletedropbtn' v-bind:to="links.deletedropbtnlink") Delete
                         router-link.dropdown-item.Duplicate(v-if='duplicatedropbtn' v-bind:to="links.duplicatebtnlink") Duplicate
                         router-link.dropdown-item(v-if='planorderbtn' v-bind:to="links.planorderbtnlink") Plan Orders
-                        router-link.dropdown-item#export(v-if='subordinatebtn' v-bind:to="links.subordinatebtnlink") Subordinate Hierchy
                 .dropdown.samodropdownbutton2(style='float: right;margin-top: -15px;', v-if='Attachmentbtn')
                     button#dropdownMenuButton2.btn.btn-secondary.dropdown-toggle.samodropdownmenubutton(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false',style="font-size: 12px;border-radius: 0px;")
                         span.fa.fa-bars.iconbutton
                         | Attachment(s)
                     .dropdown-menu(aria-labelledby='dropdownMenuButton')
-                        a.dropdown-item(href='#') Adds
+                        a.dropdown-item(href='#') Add
                 .dropdown.samodropdownbutton2(style='float: right;margin-top: -15px;', v-if='printbtn')
                     button#dropdownMenuButton.btn.btn-secondary.dropdown-toggle.samodropdownmenubutton(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false',style="font-size: 12px;border-radius: 0px;")
                         span.fa.fa-star.iconbutton
                         | Print
                     .dropdown-menu(aria-labelledby='dropdownMenuButton')
-                        a.dropdown-item.delete_inside#leavesSummary(v-if='leavesSummarybtn' v-bind:to="links.leavesSummarybtnlink") Leaves Summary
-                        router-link.dropdown-item#printBadge(v-if='printBadge' v-bind:to="links.printBadgebtnlink") Print Badge
                         a.dropdown-item(href='#') Production Orders
+
             .col-sm-6.samodashcorner
                 .dropdown.samodropdownbutton2(v-if='dropdownbtn1')
                     button#dropdownMenuButton1.btn.btn-secondary.dropdown-toggle.samodropdownmenubutton(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false',style="font-size: 12px;border-radius: 0px;")

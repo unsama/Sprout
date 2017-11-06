@@ -4274,8 +4274,19 @@
                                         i.fa.fa-lg.o_thread_message_star.fa-star-o(title='Mark as Todo', data-message-id='33')
                                 p Hr Department created
     DashboardController(v-bind:savedbtn='true', v-bind:discardbtn='true',v-bind:heading="head",v-bind:links="btnlinks")
-        .col-sm-6(style='padding:0px;' ,slot='heading')
+        .col-sm-6(style='padding:0px;' ,slot='job')
             h4.samodashheading(style="font-size: 18px;") Employees / New
+    .row
+        .col-sm-12
+            #success-alert(style='background-color:red;display:none;position:absolute;right: 16px;z-index: 3;')
+                button.close(type="button", data-dismiss="alert",style='color:white;') x
+                .o_notification.o_error
+                    .o_notification_title
+                        span.o_icon.fa.fa-3x.fa-exclamation(style='color:white;border-bottom: 3px solid white;font-size: 16px') The following fields are invalid:
+
+                    .o_notification_content(style='padding-top: 16px;')
+                        ul
+                            li#leave(style='color:white;') Employee's Name
     Editing
     .o_content(slot='profile')
         .o_view_manager_content
@@ -4320,7 +4331,7 @@
                                 #textbox
                                     .o_form_field.o_form_field_empty(data-original-title='', title='')
                                         .oe_hr_attendance_status.fa.fa-user
-                                    input#o_field_input_591.o_form_input.o_form_field.o_form_required(placeholder="Employees's Name", type='text', v-model="employeeName")
+                                    input#o_field_input_591.o_form_input.o_form_field.o_form_required.employeeName(placeholder="Employees's Name", type='text', v-model="employeeName")
                         .o_form_field_many2manytags.o_form_field
                             .o_form_field_many2one.o_form_field
                                 .o_form_input_dropdown
